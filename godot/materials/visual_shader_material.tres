@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cuqosbr3h802m"]
+
+[ext_resource type="Shader" uid="uid://bns2q0sd2edka" path="res://shaders/terrain_visual_shader.tres" id="1_g5fs6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_g5fs6")

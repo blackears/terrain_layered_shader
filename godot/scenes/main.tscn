@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://oktcn171q14u"]
+
+[ext_resource type="PackedScene" uid="uid://bw2u57o6113id" path="res://art/terrains/terrain_sample.glb" id="1_37qgn"]
+[ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/shader_material.tres" id="2_3ljdh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e0q12"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yvcq"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="terrain_sample" parent="." instance=ExtResource("1_37qgn")]
+
+[node name="Grid" parent="terrain_sample" index="0"]
+surface_material_override/0 = ExtResource("2_3ljdh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_e0q12")
+surface_material_override/0 = SubResource("StandardMaterial3D_7yvcq")
+
+[editable path="terrain_sample"]

@@ -1,0 +1,144 @@
+[gd_resource type="Shader" format=3 uid="uid://cj5ui8mbwgx27"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+
+#include \"random.gdshaderinc\"
+#include \"layer.gdshaderinc\"
+
+//struct Foo {
+	//float u;
+	//sampler2D g;
+//};
+
+uniform float tile_margin : hint_range(0, 1) = .1;
+
+uniform sampler2D xxx[4] : source_color;
+uniform vec4 albedo_0 : source_color;
+uniform sampler2D texture_albedo_0 : source_color,filter_linear_mipmap,repeat_enable;
+uniform sampler2D texture_metallic_0 : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel_0;
+uniform float roughness_0 : hint_range(0,1);
+uniform sampler2D texture_roughness_0 : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular_0;
+uniform float metallic_0;
+uniform sampler2D texture_normal_0 : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale_0 : hint_range(-16,16);
+uniform vec2 uv_mask_scale = vec2(1.0, 1.0);
+uniform vec2 uv_mask_offset;
+uniform vec2 uv_terrain_scale = vec2(1.0, 1.0);
+uniform vec2 uv_terrain_offset;
+
+varying vec2 mask_uv;
+varying vec2 terrain_uv;
+
+struct SamplePoints {
+	vec2 uv;
+};
+
+float rand(vec2 co){
+    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+mat2 rot_mat(float angle)
+{
+	return mat2(vec2(cos(angle), -sin(angle)), vec2(sin(angle), cos(angle)));
+}
+
+mat2 get_cell_xform(vec2 uv) {
+	vec2 cell = floor(uv);
+	
+	float angle = random_f2(cell) * 2.0 * PI;
+	mat2 r = rot_mat(angle);
+	return r;
+}
+
+vec4 sample_tiling(in sampler2D tex, vec2 uv, float margin)
+{
+	//Find neighboring cells we interpolate with
+	vec2 cell_base = floor(uv);
+	
+	vec2 cell = floor(uv);
+	vec2 frac = fract(uv);
+	//Amount to interpolate betwen neighbors
+	vec2 weights = frac - .5;
+	
+	if (frac.x < .5) {
+		cell.x -= 1.0;
+		weights.x = frac.x + .5;
+		weights.x = min(frac.x / margin, .5) + .5;
+	}
+	else {
+		weights.x = frac.x - .5;
+		weights.x = .5 - min((1.0 - frac.x) / margin, .5);
+	}
+	if (frac.y < .5) {
+		cell.y -= 1.0;
+		weights.y = frac.y + .5;
+		weights.y = min(frac.y / margin, .5) + .5;
+	}
+	else {
+		weights.y = frac.y - .5;
+		weights.y = .5 - min((1.0 - frac.y) / margin, .5);
+	}
+	
+	//cell = floor(uv);
+	//if (true) {
+		//float a = random_f2(cell);
+		//return vec4(a, a, a, 1.0);
+	//}
+
+	//Points where we sample
+	vec2 uv00 = get_cell_xform(cell) * uv;
+	vec2 uv10 = get_cell_xform(cell + vec2(1.0, 0.0)) * uv;
+	vec2 uv01 = get_cell_xform(cell + vec2(0.0, 1.0)) * uv;
+	vec2 uv11 = get_cell_xform(cell + vec2(1.0, 1.0)) * uv;
+	
+	//Colors sampled at points
+	vec4 c00 = texture(tex, uv00);
+	vec4 c10 = texture(tex, uv10);
+	vec4 c01 = texture(tex, uv01);
+	vec4 c11 = texture(tex, uv11);
+	//vec2 weights = frac - .5;
+	
+	//Do interpolation
+	vec4 cx0 = c00 * (1.0 - weights.x) + c10 * (weights.x);
+	vec4 cx1 = c01 * (1.0 - weights.x) + c11 * (weights.x);
+	vec4 cxy = cx0 * (1.0 - weights.y) + cx1 * (weights.y);
+	//vec4 c_base = texture(texture_albedo_0, get_cell_xform(cell) * uv);
+	
+//	return c_base;
+	return cxy;
+}
+
+void vertex() {
+	//UV=UV*uv1_scale.xy+uv1_offset.xy;
+	mask_uv = UV * uv_mask_scale.xy + uv_mask_offset.xy;
+	terrain_uv = UV * uv_terrain_scale.xy + uv_terrain_offset.xy;
+}
+
+
+void fragment() {
+	//vec2 base_uv = UV;
+
+	//vec4 albedo_tex_0 = texture(texture_albedo_0, scrambled_tile_uv(terrain_uv));
+	vec4 albedo_tex_0 = sample_tiling(texture_albedo_0, terrain_uv, tile_margin);
+	ALBEDO = albedo_0.rgb * albedo_tex_0.rgb;
+	/*
+	float metallic_tex_0 = dot(texture(texture_metallic_0, base_uv), metallic_texture_channel_0);
+	METALLIC = metallic_tex_0 * metallic_0;
+	vec4 roughness_texture_channel_0 = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex_0 = dot(texture(texture_roughness_0,base_uv), roughness_texture_channel_0);
+	ROUGHNESS = roughness_tex_0 * roughness_0;
+	NORMAL_MAP = texture(texture_normal_0, base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale_0;
+	
+	SPECULAR = specular_0;
+	*/
+	//ALBEDO = vec3(1.0, 0.0, 0.0);
+	
+}
+"
