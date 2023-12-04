@@ -26,7 +26,7 @@ environment = SubResource("Environment_r44hd")
 transform = Transform3D(0.787856, -0.584095, 0.195232, 0.0201828, 0.341325, 0.939728, -0.615529, -0.73643, 0.280704, 50.9816, 53.8474, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92178, 10, 64.9138)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.28111, 10, 52.0752)
 light_energy = 50.0
 omni_range = 74.2379
 

@@ -1,3 +1,28 @@
+/**
+* MIT License
+*
+* Copyright (c) 2023 Mark McKay
+* https://github.com/blackears/terrain_layered_shader
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
 #include "random.gdshaderinc"
 
 
@@ -7,7 +32,7 @@ mat2 rot_mat(float angle)
 }
 
 // Calculate a randomized uv transform matrix for a grid cell based on the position of the cell.
-// @cell_uv - UV cooridnate of the cell.  Must be the floor of the 
+// @cell_uv - UV cooridnate of the cell.
 mat2 get_cell_xform(vec2 uv) {
 	//Quantize to cell coordinate.
 	vec2 cell_uv = floor(uv);
