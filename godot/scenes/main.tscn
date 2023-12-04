@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://oktcn171q14u"]
+[gd_scene load_steps=6 format=3 uid="uid://oktcn171q14u"]
 
 [ext_resource type="PackedScene" uid="uid://bw2u57o6113id" path="res://art/terrains/terrain_sample.glb" id="1_37qgn"]
 [ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/terrain_brown_mud_leaves_material.tres" id="2_3ljdh"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_e0q12"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yvcq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hsh7b"]
 
@@ -23,10 +19,6 @@ sky = SubResource("Sky_tvjpi")
 [node name="Grid" parent="terrain_sample" index="0"]
 surface_material_override/0 = ExtResource("2_3ljdh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_e0q12")
-surface_material_override/0 = SubResource("StandardMaterial3D_7yvcq")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r44hd")
 
@@ -34,8 +26,8 @@ environment = SubResource("Environment_r44hd")
 transform = Transform3D(0.787856, -0.584095, 0.195232, 0.0201828, 0.341325, 0.939728, -0.615529, -0.73643, 0.280704, 50.9816, 53.8474, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6957, 10, -21.4988)
-light_energy = 10.0
-omni_range = 24.0007
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92178, 10, 64.9138)
+light_energy = 50.0
+omni_range = 74.2379
 
 [editable path="terrain_sample"]
