@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fg7bh2ejofe1"
-path.s3tc="res://.godot/imported/dry_ground_01_nor_gl_1k.png-7b899960511d63b99ea2e9f2505a04c2.s3tc.ctex"
+uid="uid://b0j8tqelbhiht"
+path.s3tc="res://.godot/imported/mask.png-4e44bb7b586de259ab865e318a216fa3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/dry_ground_01_1k.blend/textures/dry_ground_01_nor_gl_1k.png"
-dest_files=["res://.godot/imported/dry_ground_01_nor_gl_1k.png-7b899960511d63b99ea2e9f2505a04c2.s3tc.ctex"]
+source_file="res://art/textures/mask.png"
+dest_files=["res://.godot/imported/mask.png-4e44bb7b586de259ab865e318a216fa3.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://art/textures/dry_ground_01_1k.blend/textures/dry_ground_01_nor_gl_1k.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

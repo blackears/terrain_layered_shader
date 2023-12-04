@@ -1,0 +1,30 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://0ym50rs8xp22"]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ij6b8"]
+
+[resource]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_always, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha, unshaded, shadows_disabled;
+
+
+
+
+void fragment() {
+// FloatConstant:2
+	float n_out2p0 = 0.000000;
+
+
+// Output:0
+	ALPHA = n_out2p0;
+
+
+}
+"
+modes/depth_draw = 1
+flags/depth_prepass_alpha = true
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_ij6b8")
+nodes/fragment/2/position = Vector2(160, 200)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1)

@@ -1,11 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://oktcn171q14u"]
+[gd_scene load_steps=8 format=3 uid="uid://oktcn171q14u"]
 
 [ext_resource type="PackedScene" uid="uid://bw2u57o6113id" path="res://art/terrains/terrain_sample.glb" id="1_37qgn"]
-[ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/shader_material.tres" id="2_3ljdh"]
+[ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/terrain_brown_mud_leaves_material.tres" id="2_3ljdh"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e0q12"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yvcq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hsh7b"]
+
+[sub_resource type="Sky" id="Sky_tvjpi"]
+sky_material = SubResource("ProceduralSkyMaterial_hsh7b")
+
+[sub_resource type="Environment" id="Environment_r44hd"]
+background_mode = 2
+sky = SubResource("Sky_tvjpi")
 
 [node name="Node3D" type="Node3D"]
 
@@ -17,5 +26,11 @@ surface_material_override/0 = ExtResource("2_3ljdh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_e0q12")
 surface_material_override/0 = SubResource("StandardMaterial3D_7yvcq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r44hd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.787856, -0.584095, 0.195232, 0.0201828, 0.341325, 0.939728, -0.615529, -0.73643, 0.280704, 50.9816, 53.8474, 0)
 
 [editable path="terrain_sample"]

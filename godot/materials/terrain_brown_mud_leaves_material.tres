@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://cqkccoy7bp4iv"]
+
+[ext_resource type="Material" uid="uid://kbvtsi5ywaih" path="res://materials/terrain_dry_ground_material.tres" id="1_u6xvu"]
+[ext_resource type="Texture2D" uid="uid://ddb176afscjn4" path="res://art/textures/brown_mud_leaves_01_1k.blend/textures/brown_mud_leaves_01_diff_1k.jpg" id="2_g2yhp"]
+[ext_resource type="Shader" uid="uid://bn7kugcjkvobl" path="res://shaders/terrain_shader_base.tres" id="2_iw8t6"]
+[ext_resource type="Texture2D" uid="uid://ckqnjn518grbj" path="res://art/textures/brown_mud_leaves_01_1k.blend/textures/brown_mud_leaves_01_nor_gl_1k.png" id="3_kipb2"]
+[ext_resource type="Texture2D" uid="uid://dkflwqb6w78g" path="res://art/textures/brown_mud_leaves_01_1k.blend/textures/brown_mud_leaves_01_rough_1k.jpg" id="4_w6bd6"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = ExtResource("1_u6xvu")
+shader = ExtResource("2_iw8t6")
+shader_parameter/tile_margin = 0.058
+shader_parameter/uv_terrain_scale = Vector2(6.38, 6.255)
+shader_parameter/uv_terrain_offset = null
+shader_parameter/depth_offset = 0.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_g2yhp")
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/roughness = 0.0
+shader_parameter/texture_roughness = ExtResource("4_w6bd6")
+shader_parameter/specular = null
+shader_parameter/normal_scale = 0.500001
+shader_parameter/texture_normal = ExtResource("3_kipb2")
