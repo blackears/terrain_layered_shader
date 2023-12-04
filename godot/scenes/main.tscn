@@ -33,4 +33,9 @@ environment = SubResource("Environment_r44hd")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.787856, -0.584095, 0.195232, 0.0201828, 0.341325, 0.939728, -0.615529, -0.73643, 0.280704, 50.9816, 53.8474, 0)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6957, 10, -21.4988)
+light_energy = 10.0
+omni_range = 24.0007
+
 [editable path="terrain_sample"]

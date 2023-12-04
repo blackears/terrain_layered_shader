@@ -12,7 +12,7 @@ render_mode blend_mix, depth_draw_never, cull_back, diffuse_burley, specular_sch
 uniform float tile_margin : hint_range(0, 1) = .1;
 uniform vec2 uv_terrain_scale = vec2(1.0, 1.0);
 uniform vec2 uv_terrain_offset;
-uniform float depth_offset : hint_range(0, 1) = 0;
+//uniform float depth_offset : hint_range(0, 1) = 0;
 
 group_uniforms Albedo;
 uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
@@ -40,6 +40,7 @@ uniform vec4 mask_channel : source_color = vec4(0.0, 0.0, 0.0, 0.0);
 uniform sampler2D texture_mask : source_color, filter_linear_mipmap, repeat_enable, hint_default_black;
 uniform vec2 uv_mask_scale = vec2(1.0, 1.0);
 uniform vec2 uv_mask_offset;
+uniform float mask_scale = 1.0;
 
 varying vec2 mask_uv;
 varying vec2 terrain_uv;
@@ -67,7 +68,7 @@ void fragment() {
 	
 	SPECULAR = specular;
 	
-	ALPHA = 1.0 - dot(texture(texture_mask, mask_uv), mask_channel);
+	ALPHA = dot(texture(texture_mask, mask_uv) * mask_scale, mask_channel);
 //	DEPTH = FRAGCOORD.z - depth_offset;
 }
 "

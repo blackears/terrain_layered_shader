@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://kbvtsi5ywaih"]
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://kbvtsi5ywaih"]
 
 [ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://shaders/terrain_shader.tres" id="1_bm2bp"]
+[ext_resource type="Material" uid="uid://i0vtr30msggf" path="res://materials/terrain_forest_ground_material.tres" id="1_xh5l3"]
 [ext_resource type="Texture2D" uid="uid://dgi8m764tqv8x" path="res://art/textures/dry_ground_01_1k.blend/textures/dry_ground_01_diff_1k.jpg" id="2_swa2p"]
 [ext_resource type="Texture2D" uid="uid://fg7bh2ejofe1" path="res://art/textures/dry_ground_01_1k.blend/textures/dry_ground_01_nor_gl_1k.png" id="3_jdkt7"]
 [ext_resource type="Texture2D" uid="uid://b0j8tqelbhiht" path="res://art/textures/mask.png" id="3_vmdmo"]
@@ -9,11 +10,11 @@
 [resource]
 resource_local_to_scene = true
 render_priority = 2
+next_pass = ExtResource("1_xh5l3")
 shader = ExtResource("1_bm2bp")
 shader_parameter/tile_margin = 0.058
 shader_parameter/uv_terrain_scale = Vector2(6.38, 6.255)
 shader_parameter/uv_terrain_offset = null
-shader_parameter/depth_offset = 0.157
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("2_swa2p")
 shader_parameter/metallic = null
@@ -26,4 +27,5 @@ shader_parameter/texture_normal = ExtResource("3_jdkt7")
 shader_parameter/mask_channel = Color(1, 0, 0, 0)
 shader_parameter/uv_mask_scale = Vector2(1, 1)
 shader_parameter/uv_mask_offset = null
+shader_parameter/mask_scale = 1.5
 shader_parameter/texture_mask = ExtResource("3_vmdmo")
