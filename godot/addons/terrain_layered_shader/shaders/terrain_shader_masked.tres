@@ -59,9 +59,9 @@ uniform float normal_scale : hint_range(-16, 16);
 group_uniforms Mask;
 uniform vec4 mask_channel : source_color = vec4(0.0, 0.0, 0.0, 0.0);
 uniform sampler2D texture_mask : source_color, filter_linear_mipmap, repeat_enable, hint_default_black;
+uniform float mask_scale = 1.0;
 uniform vec2 uv_mask_scale = vec2(1.0, 1.0);
 uniform vec2 uv_mask_offset;
-uniform float mask_scale = 1.0;
 
 varying vec2 mask_uv;
 varying vec2 terrain_uv;

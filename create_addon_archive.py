@@ -32,21 +32,6 @@ import platform
 projectName = 'terrain_layered_shader'
 extensions = [".gd", ".tres", ".tscn", ".gdshaderinc", ".glsl", ".cfg", ".glb", ".gltf", ".jpg", ".jpeg", ".png", ".exr", ".bin"]
 
-# def copytree(src, dst):
-    # for item in os.listdir(src):
-    
-        # s = os.path.join(src, item)
-        # d = os.path.join(dst, item)
-        # if os.path.isdir(s):
-            # os.mkdir(d)
-            # copytree(s, d)
-        # else:
-            # filename, extn = os.path.splitext(item)
-            # #print ("file " + filename + " extn  " + extn)
-            # if not(extn in extensions):
-                # continue
-                
-            # shutil.copy(s, d)
 
 def copy_files_with_suffix(source_dir, dest_dir, suffixes):
     for root, dirs, files in os.walk(source_dir):
@@ -59,13 +44,9 @@ def copy_files_with_suffix(source_dir, dest_dir, suffixes):
 
 def make():
     
-    #Create build directory
-    # curPath = os.getcwd()
+    #Delete any existing build directory
     if os.path.exists('build'):
         shutil.rmtree('build')
-    # os.mkdir('build')
-    # os.mkdir('build/addons')
-    # os.mkdir('build/' + projectName)
 
     copy_files_with_suffix("godot/addons/" + projectName + "/", "build/addons/" + projectName + "/", extensions);
 

@@ -33,9 +33,9 @@ shader_parameter/roughness = null
 shader_parameter/specular = null
 shader_parameter/normal_scale = null
 shader_parameter/mask_channel = Color(0.968627, 0, 0, 0)
+shader_parameter/mask_scale = 1.0
 shader_parameter/uv_mask_scale = Vector2(1, 1)
 shader_parameter/uv_mask_offset = null
-shader_parameter/mask_scale = 1.0
 shader_parameter/texture_mask = ExtResource("4_scumx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eo1xt"]
@@ -45,7 +45,6 @@ shader = ExtResource("5_873rb")
 shader_parameter/tile_margin = 0.1
 shader_parameter/uv_terrain_scale = Vector2(1, 1)
 shader_parameter/uv_terrain_offset = null
-shader_parameter/depth_offset = 0.0
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/metallic = null
 shader_parameter/metallic_texture_channel = null

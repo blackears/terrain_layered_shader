@@ -14,7 +14,6 @@ shader = ExtResource("2_iw8t6")
 shader_parameter/tile_margin = 0.058
 shader_parameter/uv_terrain_scale = Vector2(6.38, 6.255)
 shader_parameter/uv_terrain_offset = null
-shader_parameter/depth_offset = 0.0
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("2_g2yhp")
 shader_parameter/metallic = null
