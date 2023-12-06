@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://oktcn171q14u"]
+[gd_scene load_steps=12 format=3 uid="uid://oktcn171q14u"]
 
 [ext_resource type="PackedScene" uid="uid://bw2u57o6113id" path="res://art/terrains/terrain_sample.glb" id="1_37qgn"]
 [ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/terrain_brown_mud_leaves_material.tres" id="2_3ljdh"]
+[ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/shaders/terrain_shader_masked.tres" id="3_q1o17"]
+[ext_resource type="Texture2D" uid="uid://714r5en5a8vr" path="res://art/terrains/terrain_sample_mask_sand_1.png" id="4_scumx"]
+[ext_resource type="Shader" uid="uid://bn7kugcjkvobl" path="res://addons/shaders/terrain_shader_base.tres" id="5_873rb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hsh7b"]
 
@@ -11,6 +14,41 @@ sky_material = SubResource("ProceduralSkyMaterial_hsh7b")
 [sub_resource type="Environment" id="Environment_r44hd"]
 background_mode = 2
 sky = SubResource("Sky_tvjpi")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_06b6d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtytr"]
+render_priority = 0
+shader = ExtResource("3_q1o17")
+shader_parameter/tile_margin = 0.1
+shader_parameter/uv_terrain_scale = Vector2(1, 1)
+shader_parameter/uv_terrain_offset = null
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/roughness = null
+shader_parameter/specular = null
+shader_parameter/normal_scale = null
+shader_parameter/mask_channel = Color(0.968627, 0, 0, 0)
+shader_parameter/uv_mask_scale = Vector2(1, 1)
+shader_parameter/uv_mask_offset = null
+shader_parameter/mask_scale = 1.0
+shader_parameter/texture_mask = ExtResource("4_scumx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eo1xt"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_dtytr")
+shader = ExtResource("5_873rb")
+shader_parameter/tile_margin = 0.1
+shader_parameter/uv_terrain_scale = Vector2(1, 1)
+shader_parameter/uv_terrain_offset = null
+shader_parameter/depth_offset = 0.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/roughness = null
+shader_parameter/specular = null
+shader_parameter/normal_scale = null
 
 [node name="Node3D" type="Node3D"]
 
@@ -29,5 +67,10 @@ transform = Transform3D(0.787856, -0.584095, 0.195232, 0.0201828, 0.341325, 0.93
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.28111, 10, 52.0752)
 light_energy = 50.0
 omni_range = 74.2379
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2685, 0, 9.11764)
+mesh = SubResource("CapsuleMesh_06b6d")
+surface_material_override/0 = SubResource("ShaderMaterial_eo1xt")
 
 [editable path="terrain_sample"]
