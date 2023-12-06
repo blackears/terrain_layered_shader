@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://oktcn171q14u"]
+[gd_scene load_steps=13 format=3 uid="uid://oktcn171q14u"]
 
 [ext_resource type="PackedScene" uid="uid://bw2u57o6113id" path="res://art/terrains/terrain_sample.glb" id="1_37qgn"]
 [ext_resource type="Material" uid="uid://cqkccoy7bp4iv" path="res://materials/terrain_brown_mud_leaves_material.tres" id="2_3ljdh"]
-[ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/shaders/terrain_shader_masked.tres" id="3_q1o17"]
+[ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/terrain_layered_shader/shaders/terrain_shader_masked.tres" id="3_q1o17"]
 [ext_resource type="Texture2D" uid="uid://714r5en5a8vr" path="res://art/terrains/terrain_sample_mask_sand_1.png" id="4_scumx"]
-[ext_resource type="Shader" uid="uid://bn7kugcjkvobl" path="res://addons/shaders/terrain_shader_base.tres" id="5_873rb"]
+[ext_resource type="Shader" uid="uid://bn7kugcjkvobl" path="res://addons/terrain_layered_shader/shaders/terrain_shader_base.tres" id="5_873rb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hsh7b"]
 
@@ -17,8 +17,11 @@ sky = SubResource("Sky_tvjpi")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_06b6d"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opo41"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dtytr"]
 render_priority = 0
+next_pass = SubResource("StandardMaterial3D_opo41")
 shader = ExtResource("3_q1o17")
 shader_parameter/tile_margin = 0.1
 shader_parameter/uv_terrain_scale = Vector2(1, 1)

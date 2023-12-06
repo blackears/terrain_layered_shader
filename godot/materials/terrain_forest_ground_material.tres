@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://i0vtr30msggf"]
 
-[ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/shaders/terrain_shader_masked.tres" id="1_o2n3g"]
+[ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/terrain_layered_shader/shaders/terrain_shader_masked.tres" id="1_o2n3g"]
 [ext_resource type="Texture2D" uid="uid://cgr2crbtpgung" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_diff_1k.jpg" id="2_7eu6w"]
 [ext_resource type="Texture2D" uid="uid://b0j8tqelbhiht" path="res://art/textures/mask.png" id="3_rty2q"]
 [ext_resource type="Texture2D" uid="uid://wsem0mmybuoh" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_nor_gl_1k.png" id="4_vouql"]
