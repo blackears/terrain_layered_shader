@@ -30,7 +30,7 @@ import getopt
 import platform
 
 projectName = 'terrain_layered_shader'
-extensions = [".gd", ".tres", ".tscn", ".gdshaderinc", ".glsl", ".cfg", ".txt", ".glb", ".gltf", ".jpg", ".jpeg", ".png", ".exr", ".bin"]
+extensions = [".gd", ".tres", ".tscn", ".gdshaderinc", ".glsl", ".cfg", ".txt", ".md", ".glb", ".gltf", ".jpg", ".jpeg", ".png", ".exr", ".bin"]
 
 
 def copy_files_with_suffix(source_dir, dest_dir, suffixes):
