@@ -80,9 +80,9 @@ vec4 sample_tiling(in sampler2D tex, vec2 uv, float margin)
 	vec4 c11 = texture(tex, uv11);
 	
 	//Do interpolation
-	vec4 cx0 = c00 * (1.0 - weights.x) + c10 * (weights.x);
-	vec4 cx1 = c01 * (1.0 - weights.x) + c11 * (weights.x);
-	vec4 cxy = cx0 * (1.0 - weights.y) + cx1 * (weights.y);
+	vec4 cx0 = mix(c00, c10, smoothstep(0, 1, weights.x));
+	vec4 cx1 = mix(c01, c11, smoothstep(0, 1, weights.x));
+	vec4 cxy = mix(cx0, cx1, smoothstep(0, 1, weights.y));
 	
 	return cxy;
 }

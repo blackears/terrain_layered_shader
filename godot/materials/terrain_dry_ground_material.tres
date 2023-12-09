@@ -1,31 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://kbvtsi5ywaih"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://kbvtsi5ywaih"]
 
 [ext_resource type="Material" uid="uid://i0vtr30msggf" path="res://materials/terrain_forest_ground_material.tres" id="1_xh5l3"]
 [ext_resource type="Shader" uid="uid://cj5ui8mbwgx27" path="res://addons/terrain_layered_shader/shaders/terrain_shader_masked.tres" id="2_412rv"]
-[ext_resource type="Texture2D" uid="uid://cgr2crbtpgung" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_diff_1k.jpg" id="3_if3jr"]
-[ext_resource type="Texture2D" uid="uid://b0j8tqelbhiht" path="res://art/textures/mask.png" id="3_vmdmo"]
-[ext_resource type="Texture2D" uid="uid://wsem0mmybuoh" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_nor_gl_1k.png" id="5_vxn3g"]
-[ext_resource type="Texture2D" uid="uid://bm2285el4pb05" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_rough_1k.png" id="6_g26dv"]
 
 [resource]
 resource_local_to_scene = true
 render_priority = 2
 next_pass = ExtResource("1_xh5l3")
 shader = ExtResource("2_412rv")
-shader_parameter/tile_margin = 0.058
-shader_parameter/uv_terrain_scale = Vector2(6.38, 6.255)
-shader_parameter/uv_terrain_offset = null
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("3_if3jr")
-shader_parameter/metallic = null
-shader_parameter/metallic_texture_channel = null
-shader_parameter/roughness = 0.0
-shader_parameter/texture_roughness = ExtResource("6_g26dv")
-shader_parameter/specular = null
-shader_parameter/normal_scale = 0.500001
-shader_parameter/texture_normal = ExtResource("5_vxn3g")
-shader_parameter/mask_channel = Color(1, 0, 0, 0)
-shader_parameter/mask_scale = 1.5
-shader_parameter/uv_mask_scale = Vector2(1, 1)
-shader_parameter/uv_mask_offset = null
-shader_parameter/texture_mask = ExtResource("3_vmdmo")
