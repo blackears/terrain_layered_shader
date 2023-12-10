@@ -56,7 +56,7 @@ def make():
         #shutil.rmtree('export')
         os.mkdir('export')
 
-    shutil.make_archive("export/" + projectName, "zip", "build")
+    shutil.make_archive("export/" + projectName + "_godot_addon", "zip", "build")
 
 
 
