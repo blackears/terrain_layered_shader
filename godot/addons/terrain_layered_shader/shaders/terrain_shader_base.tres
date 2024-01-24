@@ -29,7 +29,7 @@ code = "/**
 shader_type spatial;
 render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
 
-#include \"terrain_tools.gdshaderinc\"
+#include \"res://addons/terrain_layered_shader/shaders/terrain_tools.gdshaderinc\"
 
 uniform float tile_margin : hint_range(0, 1) = .1;
 uniform vec2 uv_terrain_scale = vec2(1.0, 1.0);
@@ -45,7 +45,7 @@ uniform sampler2D texture_metallic : filter_linear_mipmap, repeat_enable, hint_d
 uniform vec4 metallic_texture_channel;
 
 group_uniforms Roughness;
-uniform float roughness : hint_range(0, 1);
+uniform float roughness : hint_range(0, 1) = 1.0;
 uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
 
 group_uniforms Specular;
@@ -53,7 +53,7 @@ uniform float specular;
 
 group_uniforms Normal;
 uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
-uniform float normal_scale : hint_range(-16, 16);
+uniform float normal_scale : hint_range(-16, 16) = 1.0;
 
 varying vec2 terrain_uv;
 

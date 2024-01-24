@@ -1,3 +1,5 @@
 /blender/terrains/*.blend1
 /blender/textures/*.zip
 /build
+/godot_demo
+/export

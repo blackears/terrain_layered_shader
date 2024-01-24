@@ -23,7 +23,7 @@
 * SOFTWARE.
 */
 
-#include "random.gdshaderinc"
+#include "res://addons/terrain_layered_shader/shaders/random.gdshaderinc"
 
 
 mat2 rot_mat(float angle)
