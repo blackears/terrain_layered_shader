@@ -75,12 +75,12 @@ void vertex() {
 void fragment() {
 	vec4 albedo_tex = sample_tiling(texture_albedo, terrain_uv, tile_margin);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(sample_tiling(texture_albedo, terrain_uv, tile_margin), metallic_texture_channel);
+	float metallic_tex = dot(sample_tiling(texture_metallic, terrain_uv, tile_margin), metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(sample_tiling(texture_albedo, terrain_uv, tile_margin), roughness_texture_channel);
+	float roughness_tex = dot(sample_tiling(texture_roughness, terrain_uv, tile_margin), roughness_texture_channel);
 	ROUGHNESS = roughness_tex * roughness;
-	NORMAL_MAP = sample_tiling(texture_albedo, terrain_uv, tile_margin).rgb;
+	NORMAL_MAP = sample_tiling(texture_normal, terrain_uv, tile_margin).rgb;
 	NORMAL_MAP_DEPTH = normal_scale;
 	
 	SPECULAR = specular;
