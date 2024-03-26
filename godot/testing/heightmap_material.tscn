@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://s4b1fvi1i2gr"]
+[gd_scene load_steps=17 format=3 uid="uid://s4b1fvi1i2gr"]
 
 [ext_resource type="Texture2D" uid="uid://kl8f5sycfptr" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_diff_1k.jpg" id="1_f0ogt"]
 [ext_resource type="Texture2D" uid="uid://ca3mlyuxo5n1v" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_disp_1k.png" id="2_s01bc"]
@@ -189,6 +189,11 @@ shader_parameter/texture_roughness = ExtResource("8_kt1be")
 shader_parameter/texture_normal = ExtResource("7_2mu87")
 shader_parameter/texture_heightmap = ExtResource("6_3sriw")
 
+[sub_resource type="BoxMesh" id="BoxMesh_n3ybt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8oy7"]
+heightmap_enabled = true
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -199,3 +204,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_40lwi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.36079)
 mesh = SubResource("BoxMesh_a7wkl")
 surface_material_override/0 = SubResource("ShaderMaterial_j6iwx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75341)
+mesh = SubResource("BoxMesh_n3ybt")
+surface_material_override/0 = SubResource("StandardMaterial3D_v8oy7")
