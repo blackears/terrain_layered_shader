@@ -1,0 +1,201 @@
+[gd_scene load_steps=15 format=3 uid="uid://s4b1fvi1i2gr"]
+
+[ext_resource type="Texture2D" uid="uid://kl8f5sycfptr" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_diff_1k.jpg" id="1_f0ogt"]
+[ext_resource type="Texture2D" uid="uid://ca3mlyuxo5n1v" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_disp_1k.png" id="2_s01bc"]
+[ext_resource type="Texture2D" uid="uid://gs0mv4mmj67x" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_nor_gl_1k.png" id="3_krh2a"]
+[ext_resource type="Texture2D" uid="uid://cbaj8o07d1fkg" path="res://art/textures/rock_pitted_mossy_1k.blend/textures/rock_pitted_mossy_rough_1k.png" id="4_vviwb"]
+[ext_resource type="Texture2D" uid="uid://cgr2crbtpgung" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_diff_1k.jpg" id="5_y37jd"]
+[ext_resource type="Texture2D" uid="uid://dgo8fik4i361m" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_disp_1k.png" id="6_3sriw"]
+[ext_resource type="Texture2D" uid="uid://wsem0mmybuoh" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_nor_gl_1k.png" id="7_2mu87"]
+[ext_resource type="Texture2D" uid="uid://bm2285el4pb05" path="res://art/textures/forest_ground_04_1k.blend/textures/forest_ground_04_rough_1k.png" id="8_kt1be"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1gdyt"]
+
+[sub_resource type="Shader" id="Shader_f4jdx"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	{
+		vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		float depth = 1.0 - texture(texture_heightmap, base_uv).r;
+		vec2 ofs = base_uv - view_dir.xy * depth * heightmap_scale * 0.01;
+		base_uv=ofs;
+	}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40lwi"]
+render_priority = 0
+shader = SubResource("Shader_f4jdx")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("1_f0ogt")
+shader_parameter/texture_roughness = ExtResource("4_vviwb")
+shader_parameter/texture_normal = ExtResource("3_krh2a")
+shader_parameter/texture_heightmap = ExtResource("2_s01bc")
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7wkl"]
+
+[sub_resource type="Shader" id="Shader_i4wy3"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	{
+		vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		float num_layers = mix(float(heightmap_max_layers),float(heightmap_min_layers), abs(dot(vec3(0.0, 0.0, 1.0), view_dir)));
+		float layer_depth = 1.0 / num_layers;
+		float current_layer_depth = 0.0;
+		vec2 P = view_dir.xy * heightmap_scale * 0.01;
+		vec2 delta = P / num_layers;
+		vec2 ofs = base_uv;
+		float depth = 1.0 - texture(texture_heightmap, ofs).r;
+		float current_depth = 0.0;
+		while(current_depth < depth) {
+			ofs -= delta;
+			depth = 1.0 - texture(texture_heightmap, ofs).r;
+			current_depth += layer_depth;
+		}
+		vec2 prev_ofs = ofs + delta;
+		float after_depth  = depth - current_depth;
+		float before_depth = ( 1.0 - texture(texture_heightmap, prev_ofs).r  ) - current_depth + layer_depth;
+		float weight = after_depth / (after_depth - before_depth);
+		ofs = mix(ofs,prev_ofs,weight);
+		base_uv=ofs;
+	}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6iwx"]
+render_priority = 0
+shader = SubResource("Shader_i4wy3")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("5_y37jd")
+shader_parameter/texture_roughness = ExtResource("8_kt1be")
+shader_parameter/texture_normal = ExtResource("7_2mu87")
+shader_parameter/texture_heightmap = ExtResource("6_3sriw")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1gdyt")
+surface_material_override/0 = SubResource("ShaderMaterial_40lwi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.36079)
+mesh = SubResource("BoxMesh_a7wkl")
+surface_material_override/0 = SubResource("ShaderMaterial_j6iwx")
